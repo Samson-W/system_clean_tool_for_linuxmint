@@ -1,0 +1,12 @@
+[Desktop Entry]
+Version=1.0
+Name=System Optimize tool
+Name[zh_CN]=系统优化工具
+Comment=System optimize tool
+Comment[zh_CN]=系统优化工具
+Exec=systemtool
+Terminal=false
+X-MultipleArgs=false
+Type=Application
+Icon=system_optimization.png
+Categories=System;Utility;

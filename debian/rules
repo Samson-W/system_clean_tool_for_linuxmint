@@ -1,0 +1,28 @@
+#!/usr/bin/make -f
+
+%:
+	dh $@
+
+override_dh_auto_install:
+	dh_auto_install -- --install-lib=usr/share/systemtool\
+		--install-scripts=usr/share/systemtool
+
+	rm -f $(CURDIR)/debian/systemtool/usr/share/icons/hicolor/48x48/apps/system_optimization.png
+	mkdir -p $(CURDIR)/debian/systemtool/usr/share/icons/hicolor/48x48/apps
+	cp $(CURDIR)/systemtool/daemon/system_optimization.png $(CURDIR)/debian/systemtool/usr/share/icons/hicolor/48x48/apps/system_optimization.png
+	rm -f $(CURDIR)/debian/systemtool/usr/bin/systemtool
+	mkdir -p $(CURDIR)/debian/systemtool/usr/bin
+	echo "#!/bin/sh" > $(CURDIR)/debian/systemtool/usr/bin/systemtool
+	echo "magic='--calling-python-from-/bin/sh--'" >> $(CURDIR)/debian/systemtool/usr/bin/systemtool
+	echo "\"\"\"exec\" python -E \"\$$0\" \"\$$@\" \"\"\"#\$$magic\"" >> $(CURDIR)/debian/systemtool/usr/bin/systemtool
+	echo "import os" >> $(CURDIR)/debian/systemtool/usr/bin/systemtool
+	echo "import sys" >> $(CURDIR)/debian/systemtool/usr/bin/systemtool
+	echo "import commands" >> $(CURDIR)/debian/systemtool/usr/bin/systemtool
+	echo "gethomecommand = \"python /usr/share/systemtool/daemon/get_cur_exec_user_to_file.py\"" >> $(CURDIR)/debian/systemtool/usr/bin/systemtool
+	echo "os.system(gethomecommand)" >> $(CURDIR)/debian/systemtool/usr/bin/systemtool
+	echo "launcher = commands.getoutput(\"/usr/lib/linuxmint/common/mint-which-launcher.py\")" >> $(CURDIR)/debian/systemtool/usr/bin/systemtool
+	echo "command = \"%s python /usr/share/systemtool/daemon/GUI_systemtool.py\" % (launcher)" >> $(CURDIR)/debian/systemtool/usr/bin/systemtool
+	echo "os.system(command)" >> $(CURDIR)/debian/systemtool/usr/bin/systemtool
+	#echo "python /usr/share/gufw/gufw/gufw.py" >> $(CURDIR)/debian/gufw/usr/bin/gufw
+	chmod 755 $(CURDIR)/debian/systemtool/usr/bin/systemtool
+

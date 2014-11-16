@@ -1,0 +1,17 @@
+Source: system-tool
+Section: admin
+Priority: optional
+Maintainer: baichuan <baichuan@nfschina.com>
+Build-Depends: debhelper (>= 9),python-distutils-extra,
+Build-Depends-Indep: python (>= 2.7.4~), gettext
+X-Python-Version: >= 2.5
+
+Package: systemtool
+Architecture: all
+Depends:  ${python:Depends}, ${misc:Depends}, gir1.2-gtk-3.0,
+ gir1.2-polkit-1.0, notify-osd | notification-daemon, policykit-1,
+ python-dbus, python-gobject, gnome-icon-theme-symbolic
+XB-Python-Version: ${python:Versions}
+Recommends: python-notify
+Description: graphical user interface for enable/disable boot server on boot and system clean trash.
+
