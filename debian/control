@@ -1,7 +1,7 @@
 Source: system-tool
 Section: admin
 Priority: optional
-Maintainer: baichuan <baichuan@nfschina.com>
+Maintainer: samson <sccxboy@gmail.com>
 Build-Depends: debhelper (>= 9),python-distutils-extra,
 Build-Depends-Indep: python (>= 2.7.4~), gettext
 X-Python-Version: >= 2.5
