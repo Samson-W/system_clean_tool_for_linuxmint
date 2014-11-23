@@ -2,4 +2,4 @@ system-tool (1.0-8nfs1) raring; urgency=low
 
   * create system-tool: boot server on/off, system clean trash.;
 
- -- Samson <sccxbboy@gmail.com>  Wed, 29 Oct 2014 17:36:17 +0800
+ -- Samson <sccxboy@gmail.com>  Wed, 29 Oct 2014 17:36:17 +0800
